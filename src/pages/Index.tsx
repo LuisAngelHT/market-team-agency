@@ -1,134 +1,285 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Play, Instagram, Facebook, Star } from "lucide-react";
+import { Play, ImageIcon } from "lucide-react";
 import QualificationModal from "@/components/QualificationModal";
+import Navbar from "@/components/Navbar";
+import ScrollReveal from "@/components/ScrollReveal";
 
-const testimonials = [
-  { name: "Carlos M.", role: "Abogado Penalista", text: "En 3 meses tripliqué mis consultas. Dejé de depender del boca en boca y ahora tengo un flujo constante de clientes nuevos." },
-  { name: "María L.", role: "Abogada de Familia", text: "Pasé de 2 consultas semanales a más de 10. El sistema realmente funciona y el retorno de inversión es impresionante." },
-  { name: "Roberto S.", role: "Abogado Corporativo", text: "Nunca pensé que las redes sociales pudieran traerme clientes de este nivel. Ahora facturo el doble que hace 6 meses." },
+const clientes = [
+  {
+    name: "Nick Name",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non justo vel lacus viverra placerat.",
+  },
+  {
+    name: "Nick Name",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non justo vel lacus viverra placerat.",
+  },
 ];
 
 const faqs = [
-  { q: "¿Para qué tipo de abogados funciona este sistema?", a: "Funciona para cualquier especialidad legal: penal, familiar, corporativo, laboral, inmobiliario, etc. Lo importante es tener la disposición de invertir en crecimiento." },
-  { q: "¿Cuánto tiempo tarda en dar resultados?", a: "La mayoría de nuestros clientes empiezan a recibir consultas en las primeras 2-4 semanas. Los resultados más sólidos se consolidan entre el mes 2 y 3." },
-  { q: "¿Necesito saber de redes sociales?", a: "No. Nosotros nos encargamos de toda la estrategia, creación de contenido y gestión de campañas. Tú solo te enfocas en atender a tus nuevos clientes." },
-  { q: "¿Cuánto debo invertir en publicidad?", a: "Recomendamos un presupuesto mínimo de pauta según tu mercado. En la consultoría gratuita analizamos tu caso específico y te damos un estimado personalizado." },
-  { q: "¿Qué pasa si no funciona?", a: "Tenemos un track record comprobado. En la consultoría evaluamos si tu perfil es ideal para nuestro sistema antes de comenzar, para asegurarnos de que los resultados sean positivos." },
+  {
+    q: "¿Esto funciona para mi tipo de negocio?",
+    a: "Trabajamos con negocios B2B, expertos y marcas personales que ya tienen conocimiento y buscan convertirlo en clientes. Si ya tienes algo validado pero no logras escalar, es donde más impacto generamos.",
+  },
+  {
+    q: "¿Necesito tener experiencia creando contenido o vendiendo?",
+    a: "No. Nosotros nos encargamos de toda la estrategia, creación de contenido y gestión de campañas. Tú solo te enfocas en atender a tus nuevos clientes.",
+  },
+  {
+    q: "¿Qué pasa si no obtengo resultados?",
+    a: "Trabajamos gratis hasta lograr el resultado. Tenemos un track record comprobado y evaluamos tu caso antes de comenzar.",
+  },
+  {
+    q: "¿Qué necesito para empezar?",
+    a: "Solo necesitas agendar tu consultoría gratuita. Ahí analizaremos tu caso y te diremos exactamente qué necesitas.",
+  },
 ];
 
 const Index = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Hero */}
-      <section className="flex min-h-[90vh] flex-col items-center justify-center px-4 text-center">
-        <div className="mx-auto max-w-3xl space-y-6">
-          <span className="inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-            Para abogados que quieren crecer
-          </span>
-          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl">
-            Deja de depender del{" "}
-            <span className="text-primary">"boca en boca"</span>{" "}
-            y consigue clientes de forma predecible
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            Sistema probado para atraer consultas cualificadas a través de Instagram, Facebook y WhatsApp — sin que tú tengas que crear contenido.
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      {/* Background glow effects */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute top-0 left-1/4 h-[600px] w-[600px] rounded-full bg-primary/15 blur-[150px]" />
+        <div className="absolute bottom-1/4 right-0 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]" />
+        <div className="absolute top-1/2 left-0 h-[400px] w-[400px] rounded-full bg-primary/8 blur-[100px]" />
+      </div>
 
-      {/* Video */}
-      <section className="px-4 pb-8">
-        <div className="mx-auto max-w-3xl">
-          <div className="relative overflow-hidden rounded-2xl border border-border bg-secondary">
-            <div className="flex aspect-video items-center justify-center">
-              <div className="flex flex-col items-center gap-4 text-muted-foreground">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary bg-primary/10">
-                  <Play className="h-8 w-8 text-primary" />
+      <div className="relative z-10">
+        <Navbar onCtaClick={() => setModalOpen(true)} />
+
+        {/* Hero */}
+        <section className="flex min-h-screen flex-col items-center justify-center px-4 pt-20 text-center">
+          <ScrollReveal>
+            <div className="mx-auto max-w-3xl space-y-6">
+              <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl italic">
+                No necesitas hacer más videitos...{" "}
+                <span className="text-foreground">
+                  Necesitas entender por qué no estás consiguiendo clientes.
+                </span>
+              </h1>
+              <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
+                Implementamos un sistema de adquisición que te lleva a{" "}
+                <span className="font-bold text-foreground">facturar entre 20K – 50K en 5 meses</span>
+                <br />
+                <span className="text-muted-foreground">(o trabajamos gratis hasta lograrlo)</span>
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Video */}
+          <ScrollReveal delay={200} className="mt-12 w-full max-w-2xl">
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-secondary/50 backdrop-blur-sm">
+              <div className="flex aspect-video items-center justify-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-muted-foreground/30 bg-secondary/80 transition-transform duration-300 hover:scale-110 cursor-pointer">
+                  <Play className="h-7 w-7 text-muted-foreground" />
                 </div>
-                <p className="text-sm">Mira cómo funciona nuestra metodología</p>
               </div>
             </div>
+          </ScrollReveal>
+
+          {/* CTA below video */}
+          <ScrollReveal delay={400} className="mt-10">
+            <p className="mx-auto mb-6 max-w-2xl text-sm text-muted-foreground sm:text-base">
+              Si eres <span className="font-bold text-foreground">Abogado</span> o tienes un{" "}
+              <span className="font-bold text-foreground">Estudio Jurídico</span> y quieres{" "}
+              <span className="font-bold text-foreground">dejar de perder</span> clientes frente a tu competencia,
+              agenda tu consultoría gratuita.
+            </p>
+            <Button
+              onClick={() => setModalOpen(true)}
+              className="rounded-full px-8 py-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
+            >
+              Consultoría Gratis
+            </Button>
+          </ScrollReveal>
+        </section>
+
+        {/* Clientes */}
+        <section id="clientes" className="px-4 py-24">
+          <div className="mx-auto max-w-4xl">
+            <ScrollReveal>
+              <h2 className="mb-16 text-center text-4xl font-extrabold italic sm:text-5xl">
+                Clientes
+              </h2>
+            </ScrollReveal>
+            <div className="space-y-8">
+              {clientes.map((c, i) => (
+                <ScrollReveal key={i} delay={i * 150} direction={i % 2 === 0 ? "left" : "right"}>
+                  <div className="flex flex-col sm:flex-row items-center gap-6 rounded-2xl border border-border bg-secondary/30 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary/50 hover:bg-secondary/50">
+                    <div className="flex-shrink-0 w-full sm:w-64 aspect-video rounded-xl bg-secondary/80 flex items-center justify-center">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary border border-muted-foreground/30">
+                        <Play className="h-5 w-5 text-muted-foreground" />
+                      </div>
+                    </div>
+                    <div className="flex-1 space-y-2">
+                      <h3 className="text-lg font-extrabold uppercase tracking-wide">{c.name}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="px-4 py-16 text-center">
-        <Button
-          onClick={() => setModalOpen(true)}
-          size="lg"
-          className="h-auto max-w-xl whitespace-normal px-8 py-5 text-base font-semibold sm:text-lg"
-        >
-          Agenda tu consultoría gratuita: Vamos a analizar si podemos ayudarte a lograr tus objetivos
-        </Button>
-      </section>
-
-      {/* Testimonios */}
-      <section className="px-4 py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="mb-12 text-center text-3xl font-bold sm:text-4xl">
-            Lo que dicen nuestros <span className="text-primary">clientes</span>
-          </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <div key={i} className="rounded-xl border border-border bg-card p-6 space-y-4">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="h-4 w-4 fill-primary text-primary" />
-                  ))}
+        {/* Método */}
+        <section className="px-4 py-24">
+          <div className="mx-auto max-w-4xl">
+            <ScrollReveal>
+              <h2 className="mb-16 text-center text-4xl font-extrabold italic sm:text-5xl">
+                Metodo
+              </h2>
+            </ScrollReveal>
+            <div className="grid gap-6 md:grid-cols-2">
+              <ScrollReveal delay={0} direction="left">
+                <div className="rounded-2xl border border-border bg-secondary/30 backdrop-blur-sm p-6 h-full">
+                  <h3 className="mb-4 text-xl font-extrabold">Agencias Estiercol</h3>
+                  <div className="mb-4 flex justify-center">
+                    <span className="text-3xl">💩</span>
+                  </div>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
+                      Publican contenido sin generar ventas
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
+                      Se enfocan en likes y alcance
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
+                      Procesos desordenados y sin claridad (IMPROVISACIÓN)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
+                      Dependes de ellos para todo
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
+                      Contratan a terceros y no obtener resultados
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
+                      No garantizan resultados
+                    </li>
+                  </ul>
                 </div>
-                <p className="text-muted-foreground">"{t.text}"</p>
-                <div>
-                  <p className="font-semibold text-foreground">{t.name}</p>
-                  <p className="text-sm text-muted-foreground">{t.role}</p>
+              </ScrollReveal>
+              <ScrollReveal delay={200} direction="right">
+                <div className="rounded-2xl border-2 border-primary bg-primary/10 backdrop-blur-sm p-6 h-full">
+                  <h3 className="mb-4 text-xl font-extrabold">Market Team Agency</h3>
+                  <div className="mb-4 flex justify-center">
+                    <span className="text-3xl">🚀</span>
+                  </div>
+                  <ul className="space-y-3 text-sm text-foreground">
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      Implementamos un sistema que genera <span className="font-bold">clientes constantes</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      Nos enfocamos en conversión y rentabilidad real
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      Trabajamos con metodologías <span className="font-bold text-primary">TRACK + PAE + Troyanos</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      Construimos un sistema que <span className="font-bold">No depende de ti</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      Equipo interno optimizado para un rendimiento real
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      Trabajamos gratis hasta lograr el resultado
+                    </li>
+                  </ul>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* TRACK */}
+        <section className="px-4 py-24">
+          <div className="mx-auto max-w-3xl">
+            <ScrollReveal>
+              <h2 className="mb-12 text-center text-4xl font-extrabold uppercase tracking-widest sm:text-5xl">
+                TRACK
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200} direction="scale">
+              <div className="rounded-2xl border border-border bg-secondary/30 backdrop-blur-sm">
+                <div className="flex aspect-video items-center justify-center">
+                  <div className="flex flex-col items-center gap-3 text-muted-foreground">
+                    <ImageIcon className="h-16 w-16 text-muted-foreground/50" />
+                  </div>
                 </div>
               </div>
-            ))}
+            </ScrollReveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ */}
-      <section className="px-4 py-20">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="mb-12 text-center text-3xl font-bold sm:text-4xl">
-            Preguntas <span className="text-primary">frecuentes</span>
-          </h2>
-          <Accordion type="single" collapsible className="space-y-2">
-            {faqs.map((f, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="rounded-lg border border-border bg-card px-4">
-                <AccordionTrigger className="text-left hover:no-underline">
-                  {f.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border px-4 py-10">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 text-center">
-          <div className="flex gap-4">
-            <a href="#" className="text-muted-foreground transition-colors hover:text-primary">
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-muted-foreground transition-colors hover:text-primary">
-              <Facebook className="h-5 w-5" />
-            </a>
+        {/* FAQ */}
+        <section id="faq" className="px-4 py-24">
+          <div className="mx-auto max-w-2xl">
+            <ScrollReveal>
+              <h2 className="mb-12 text-center text-4xl font-extrabold italic sm:text-5xl">
+                Preguntas frecuentes
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <Accordion type="single" collapsible className="space-y-3">
+                {faqs.map((f, i) => (
+                  <AccordionItem
+                    key={i}
+                    value={`faq-${i}`}
+                    className="rounded-xl border-2 border-primary/60 bg-secondary/30 backdrop-blur-sm px-5 overflow-hidden transition-colors data-[state=open]:bg-primary/10"
+                  >
+                    <AccordionTrigger className="text-left text-sm font-semibold hover:no-underline text-foreground py-4">
+                      {f.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm text-muted-foreground pb-4">
+                      {f.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </ScrollReveal>
           </div>
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Todos los derechos reservados.
-          </p>
-        </div>
-      </footer>
+        </section>
+
+        {/* Footer CTA */}
+        <section className="px-4 py-20 text-center">
+          <ScrollReveal>
+            <p className="mx-auto mb-8 max-w-xl text-sm text-muted-foreground sm:text-base">
+              No necesitas más contenido, más herramientas o más personas. Necesitas entender por qué todo eso no te está dando resultados.
+            </p>
+            <Button
+              onClick={() => setModalOpen(true)}
+              className="rounded-full px-8 py-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
+            >
+              Consultoría Gratis
+            </Button>
+          </ScrollReveal>
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t border-border px-4 py-8">
+          <div className="text-center">
+            <p className="text-sm text-muted-foreground">
+              © Copyright {new Date().getFullYear()}
+            </p>
+          </div>
+        </footer>
+      </div>
 
       <QualificationModal open={modalOpen} onOpenChange={setModalOpen} />
     </div>
