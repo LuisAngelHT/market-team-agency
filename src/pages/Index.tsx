@@ -4,10 +4,6 @@ import QualificationModal from "@/components/QualificationModal";
 import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/ScrollReveal";
 import FaqAccordion from "@/components/FaqAccordion";
-import { Play, ImageIcon } from "lucide-react";
-import QualificationModal from "@/components/QualificationModal";
-import Navbar from "@/components/Navbar";
-import ScrollReveal from "@/components/ScrollReveal";
 
 const clientes = [
   {
