@@ -243,14 +243,7 @@ const Index = () => {
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <Accordion type="single" collapsible className="space-y-3">
-                {faqs.map((f, i) => (
-                  <AccordionItem
-                    key={i}
-                    value={`faq-${i}`}
-                    className="rounded-xl border border-primary/60 bg-secondary/30 backdrop-blur-sm px-5 overflow-hidden transition-all duration-300 data-[state=open]:border-transparent data-[state=open]:faq-active"
-                    style={{ fontFamily: "'Hind', sans-serif" }}
-                  >
+              <FaqAccordion faqs={faqs} />
                     <AccordionTrigger className="text-left text-sm font-semibold hover:no-underline text-foreground py-4">
                       {f.q}
                     </AccordionTrigger>
