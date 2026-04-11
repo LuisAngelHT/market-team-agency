@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Play, ImageIcon } from "lucide-react";
+import QualificationModal from "@/components/QualificationModal";
+import Navbar from "@/components/Navbar";
+import ScrollReveal from "@/components/ScrollReveal";
+import FaqAccordion from "@/components/FaqAccordion";
 import { Play, ImageIcon } from "lucide-react";
 import QualificationModal from "@/components/QualificationModal";
 import Navbar from "@/components/Navbar";
