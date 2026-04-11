@@ -244,15 +244,6 @@ const Index = () => {
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <FaqAccordion faqs={faqs} />
-                    <AccordionTrigger className="text-left text-sm font-semibold hover:no-underline text-foreground py-4">
-                      {f.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-sm text-muted-foreground pb-4 data-[state=open]:text-foreground/80">
-                      {f.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
             </ScrollReveal>
           </div>
         </section>
