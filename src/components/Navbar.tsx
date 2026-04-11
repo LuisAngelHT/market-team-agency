@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 
 interface NavbarProps {
   onCtaClick: () => void;
@@ -16,34 +15,34 @@ const Navbar = ({ onCtaClick }: NavbarProps) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 rounded-full navbar-gradient px-2 py-2 ${
         scrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border shadow-lg shadow-primary/5"
-          : "bg-transparent"
+          ? "backdrop-blur-md shadow-lg shadow-primary/10"
+          : ""
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Button
+      <div className="flex items-center gap-1">
+        <button
           onClick={onCtaClick}
-          size="sm"
-          className="rounded-full px-5 text-xs font-bold uppercase tracking-wider"
+          className="btn-cta-gradient rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider text-[hsl(0,0%,100%)] border border-[hsl(0,0%,100%)]/20 transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
+          style={{ fontFamily: "'Hind', sans-serif" }}
         >
           Consultoría Gratis
-        </Button>
-        <div className="flex items-center gap-6">
-          <a
-            href="#clientes"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Clientes
-          </a>
-          <a
-            href="#faq"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-          >
-            FAQ
-          </a>
-        </div>
+        </button>
+        <a
+          href="#clientes"
+          className="px-4 py-2 text-sm font-medium text-[hsl(0,0%,80%)] transition-colors hover:text-[hsl(0,0%,100%)]"
+          style={{ fontFamily: "'Hind', sans-serif" }}
+        >
+          Clientes
+        </a>
+        <a
+          href="#faq"
+          className="px-4 py-2 text-sm font-medium text-[hsl(0,0%,80%)] transition-colors hover:text-[hsl(0,0%,100%)]"
+          style={{ fontFamily: "'Hind', sans-serif" }}
+        >
+          FAQ
+        </a>
       </div>
     </nav>
   );

@@ -13,7 +13,7 @@
     --popover: 240 10% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 270 60% 55%;
+    --primary: 265 100% 50%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 10% 14%;
@@ -22,7 +22,7 @@
     --muted: 240 10% 14%;
     --muted-foreground: 240 5% 55%;
 
-    --accent: 270 60% 55%;
+    --accent: 265 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -30,18 +30,18 @@
 
     --border: 240 10% 18%;
     --input: 240 10% 18%;
-    --ring: 270 60% 55%;
+    --ring: 265 100% 50%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 240 10% 6%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 270 60% 55%;
+    --sidebar-primary: 265 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 10% 14%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 240 10% 18%;
-    --sidebar-ring: 270 60% 55%;
+    --sidebar-ring: 265 100% 50%;
   }
 }
 
@@ -52,5 +52,47 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Hind', sans-serif;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Anton', sans-serif;
+  }
+}
+
+/* Gradient text for section titles */
+.gradient-title {
+  background: linear-gradient(180deg, #ffffff 0%, #e1e1e1 40%, #121212 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navbar gradient */
+.navbar-gradient {
+  background: linear-gradient(90deg, #220954, #282954);
+}
+
+/* CTA button gradient */
+.btn-cta-gradient {
+  background: linear-gradient(90deg, #7800ff, #3a00bf);
+}
+
+/* CTA section gradient */
+.cta-section-gradient {
+  background: linear-gradient(90deg, rgba(74, 0, 255, 0), #4a00ff, rgba(74, 0, 255, 0));
+}
+
+/* Method card colors */
+.method-bad {
+  background-color: #333547;
+}
+
+.method-good {
+  background-color: #4a00ff;
+}
+
+/* FAQ active state */
+.faq-active {
+  background: linear-gradient(90deg, #7800ff, #3a00bf);
 }
