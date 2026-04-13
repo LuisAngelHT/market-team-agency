@@ -83,6 +83,7 @@ const VslPlayer = () => {
           muted
           playsInline
           preload="auto"
+          loop
         />
       </div>
 
