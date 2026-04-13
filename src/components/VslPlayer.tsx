@@ -1,85 +1,73 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { VolumeX } from "lucide-react";
-
-const YOUTUBE_VIDEO_ID = "6H8jMHyvDbk";
+import { VolumeX, Pause, Play } from "lucide-react";
 
 const VslPlayer = () => {
-  const playerRef = useRef<any>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressInterval = useRef<ReturnType<typeof setInterval> | null>(null);
   const [showAlert, setShowAlert] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [hasClicked, setHasClicked] = useState(false);
 
   useEffect(() => {
-    const win = window as any;
-    if (win.YT && win.YT.Player) {
-      initPlayer();
-      return;
-    }
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(tag);
-    win.onYouTubeIframeAPIReady = () => initPlayer();
-    return () => {
-      if (progressInterval.current) clearInterval(progressInterval.current);
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onCanPlay = () => {
+      setIsReady(true);
+      video.play().catch(() => {});
     };
-  }, []);
 
-  const initPlayer = () => {
-    const win = window as any;
-    playerRef.current = new win.YT.Player("vsl-yt-player", {
-      videoId: YOUTUBE_VIDEO_ID,
-      playerVars: {
-        autoplay: 1,
-        controls: 0,
-        modestbranding: 1,
-        rel: 0,
-        showinfo: 0,
-        mute: 1,
-        playsinline: 1,
-        disablekb: 1,
-        fs: 0,
-        iv_load_policy: 3,
-      },
-      events: {
-        onReady: (e: any) => {
-          setIsReady(true);
-          e.target.playVideo();
-          startProgress();
-        },
-        onStateChange: (e: any) => {
-          if (e.data === 0) { // ENDED
-            setProgress(100);
-            if (progressInterval.current) clearInterval(progressInterval.current);
-          }
-        },
-      },
-    });
-  };
-
-  const startProgress = () => {
-    if (progressInterval.current) clearInterval(progressInterval.current);
-    progressInterval.current = setInterval(() => {
-      const p = playerRef.current;
-      if (p && p.getDuration) {
-        const cur = p.getCurrentTime();
-        const dur = p.getDuration();
-        if (dur > 0) setProgress((cur / dur) * 100);
+    const onTimeUpdate = () => {
+      if (video.duration > 0 && hasClicked) {
+        setProgress((video.currentTime / video.duration) * 100);
       }
-    }, 500);
-  };
+    };
+
+    const onEnded = () => {
+      if (hasClicked) setProgress(100);
+    };
+
+    video.addEventListener("canplay", onCanPlay);
+    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("ended", onEnded);
+
+    return () => {
+      video.removeEventListener("canplay", onCanPlay);
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("ended", onEnded);
+    };
+  }, [hasClicked]);
 
   const handleClick = useCallback(() => {
-    if (!playerRef.current) return;
-    setShowAlert(false);
-    playerRef.current.seekTo(0, true);
-    playerRef.current.unMute();
-    playerRef.current.setVolume(100);
-    playerRef.current.playVideo();
-    setProgress(0);
-    startProgress();
-  }, []);
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (!hasClicked) {
+      setShowAlert(false);
+      setHasClicked(true);
+      video.currentTime = 0;
+      video.muted = false;
+      video.volume = 1;
+      video.play();
+      setProgress(0);
+    }
+  }, [hasClicked]);
+
+  const togglePause = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video || !hasClicked) return;
+
+    if (video.paused) {
+      video.play();
+      setIsPaused(false);
+    } else {
+      video.pause();
+      setIsPaused(true);
+    }
+  }, [hasClicked]);
 
   return (
     <div
@@ -87,8 +75,15 @@ const VslPlayer = () => {
       className="relative w-full overflow-hidden rounded-2xl border border-border bg-black cursor-pointer select-none"
       onClick={handleClick}
     >
-      <div className="aspect-video w-full pointer-events-none">
-        <div id="vsl-yt-player" className="w-full h-full" />
+      <div className="aspect-video w-full">
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          src="/sample-vsl.mp4"
+          muted
+          playsInline
+          preload="auto"
+        />
       </div>
 
       {showAlert && isReady && (
@@ -108,15 +103,28 @@ const VslPlayer = () => {
         </div>
       )}
 
-      <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/60 z-30">
-        <div
-          className="h-full transition-all duration-500 ease-linear"
-          style={{
-            width: `${progress}%`,
-            background: "linear-gradient(90deg, #e53e3e, #c53030)",
-          }}
-        />
-      </div>
+      {/* Pause button - only visible after click */}
+      {hasClicked && (
+        <button
+          onClick={togglePause}
+          className="absolute bottom-4 left-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-[hsl(0,0%,100%)] backdrop-blur-sm transition-opacity hover:bg-black/80"
+        >
+          {isPaused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+        </button>
+      )}
+
+      {/* Progress bar - only visible after click */}
+      {hasClicked && (
+        <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/60 z-30">
+          <div
+            className="h-full transition-all duration-300 ease-linear"
+            style={{
+              width: `${progress}%`,
+              background: "linear-gradient(90deg, #e53e3e, #c53030)",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
