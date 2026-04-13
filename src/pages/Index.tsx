@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Play, ImageIcon } from "lucide-react";
+import VslPlayer from "@/components/VslPlayer";
 import QualificationModal from "@/components/QualificationModal";
 import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -72,13 +73,7 @@ const Index = () => {
 
           {/* Video */}
           <ScrollReveal delay={200} className="mt-12 w-full max-w-2xl">
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-secondary/50 backdrop-blur-sm">
-              <div className="flex aspect-video items-center justify-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-muted-foreground/30 bg-secondary/80 transition-transform duration-300 hover:scale-110 cursor-pointer">
-                  <Play className="h-7 w-7 text-muted-foreground" />
-                </div>
-              </div>
-            </div>
+            <VslPlayer />
           </ScrollReveal>
 
           {/* CTA below video */}
