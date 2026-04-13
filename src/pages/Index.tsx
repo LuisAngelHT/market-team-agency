@@ -77,22 +77,22 @@ const Index = () => {
           </ScrollReveal>
 
           {/* CTA below video */}
-          <ScrollReveal delay={400} className="mt-10 w-full">
-            <div className="cta-section-gradient py-8 px-4 -mx-4">
-              <p className="mx-auto mb-6 max-w-2xl text-sm text-foreground sm:text-base" style={{ fontFamily: "'Hind', sans-serif" }}>
+          <ScrollReveal delay={400} className="mt-10 w-full flex flex-col items-center">
+            <div className="cta-section-gradient py-6 px-8 rounded-lg max-w-2xl w-full text-center">
+              <p className="text-sm text-foreground sm:text-base" style={{ fontFamily: "'Hind', sans-serif" }}>
                 Si eres <span className="font-bold">Abogado</span> o tienes un{" "}
                 <span className="font-bold">Estudio Jurídico</span> y quieres{" "}
                 <span className="font-bold">dejar de perder</span> clientes frente a tu competencia,
                 agenda tu consultoría gratuita.
               </p>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="btn-cta-gradient rounded-lg px-8 py-4 text-sm font-bold uppercase tracking-wider text-[hsl(0,0%,100%)] border border-[hsl(0,0%,100%)]/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
-                style={{ fontFamily: "'Hind', sans-serif" }}
-              >
-                Consultoría <span className="font-extrabold">Gratis</span>
-              </button>
             </div>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="btn-cta-gradient mt-8 rounded-lg px-8 py-4 text-sm font-bold uppercase tracking-wider text-[hsl(0,0%,100%)] border border-[hsl(0,0%,100%)]/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
+              style={{ fontFamily: "'Hind', sans-serif" }}
+            >
+              Consultoría <span className="font-extrabold">Gratis</span>
+            </button>
           </ScrollReveal>
         </section>
 
@@ -100,7 +100,7 @@ const Index = () => {
         <section id="clientes" className="px-4 py-24">
           <div className="mx-auto max-w-3xl">
             <ScrollReveal>
-              <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl uppercase tracking-wide">
+              <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl tracking-wide">
                 Clientes
               </h2>
             </ScrollReveal>
@@ -128,7 +128,7 @@ const Index = () => {
         <section className="px-4 py-24">
           <div className="mx-auto max-w-4xl">
             <ScrollReveal>
-              <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl uppercase tracking-wide">
+              <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl tracking-wide">
                 Metodo
               </h2>
             </ScrollReveal>
@@ -213,8 +213,8 @@ const Index = () => {
         <section className="px-4 py-24">
           <div className="mx-auto max-w-3xl">
             <ScrollReveal>
-              <h2 className="gradient-title mb-12 text-center text-5xl sm:text-6xl uppercase tracking-widest">
-                TRACK
+              <h2 className="gradient-title mb-12 text-center text-5xl sm:text-6xl tracking-widest">
+                Track
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={200} direction="scale">
@@ -233,8 +233,8 @@ const Index = () => {
         <section id="faq" className="px-4 py-24">
           <div className="mx-auto max-w-2xl">
             <ScrollReveal>
-              <h2 className="gradient-title mb-12 text-center text-5xl sm:text-6xl uppercase tracking-wide">
-                Preguntas frecuentes
+              <h2 className="gradient-title mb-12 text-center text-5xl sm:text-6xl tracking-wide">
+                Preguntas Frecuentes
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>

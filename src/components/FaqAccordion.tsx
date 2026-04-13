@@ -24,19 +24,25 @@ const FaqAccordion = ({ faqs }: { faqs: FaqItem[] }) => {
           <AccordionItem
             key={i}
             value={value}
-            className="rounded-xl border px-5 overflow-hidden transition-all duration-300"
+            className="border rounded-xl overflow-hidden transition-all duration-300"
             style={{
-              fontFamily: "'Hind', sans-serif",
-              background: isOpen
-                ? "linear-gradient(90deg, #7800ff, #3a00bf)"
-                : "hsl(240 10% 14% / 0.3)",
               borderColor: isOpen ? "transparent" : "hsl(265 100% 50% / 0.6)",
+              background: "transparent",
             }}
           >
-            <AccordionTrigger className="text-left text-sm font-semibold hover:no-underline text-foreground py-4">
-              {f.q}
-            </AccordionTrigger>
-            <AccordionContent className="text-sm pb-4" style={{ color: isOpen ? "hsl(0 0% 90%)" : "hsl(240 5% 55%)" }}>
+            <div
+              className="px-5 rounded-xl transition-all duration-300"
+              style={{
+                background: isOpen
+                  ? "linear-gradient(90deg, #7800ff, #3a00bf)"
+                  : "hsl(240 10% 14% / 0.3)",
+              }}
+            >
+              <AccordionTrigger className="text-left text-sm font-semibold hover:no-underline text-foreground py-4" style={{ fontFamily: "'Hind', sans-serif" }}>
+                {f.q}
+              </AccordionTrigger>
+            </div>
+            <AccordionContent className="text-sm px-5 pb-4 pt-3" style={{ fontFamily: "'Hind', sans-serif", color: "hsl(240 5% 65%)" }}>
               {f.a}
             </AccordionContent>
           </AccordionItem>
