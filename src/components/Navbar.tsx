@@ -14,37 +14,82 @@ const Navbar = ({ onCtaClick }: NavbarProps) => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 rounded-full navbar-gradient px-2 py-2 ${
+    <>
+      {/* Mantenemos los estilos de animación */}
+      <style>{`
+        @keyframes pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 10px rgba(74, 0, 255, 0.5), 0 0 20px rgba(74, 0, 255, 0.3);
+            transform: scale(1);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(74, 0, 255, 0.9), 0 0 40px rgba(74, 0, 255, 0.5);
+            transform: scale(1.04);
+          }
+        }
+        .btn-pulse {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+        .btn-pulse:hover {
+          animation: none;
+          transform: scale(1.04);
+          box-shadow: 0 0 30px rgba(74, 0, 255, 0.8), 0 0 60px rgba(74, 0, 255, 0.4);
+        }
+        .nav-link {
+          position: relative;
+        }
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+          width: 0%;
+          height: 2px;
+          background: #4a00ff;
+          border-radius: 9999px;
+          transition: width 0.3s ease;
+          box-shadow: 0 0 6px rgba(74, 0, 255, 0.8);
+        }
+        .nav-link:hover::after {
+          width: 100%;
+        }
+      `}</style>
+
+      <nav className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[80%] max-w-[500px] transition-all duration-500 rounded-full border ${
         scrolled
-          ? "backdrop-blur-md shadow-lg shadow-primary/10"
-          : ""
-      }`}
-    >
-      <div className="flex items-center gap-1">
-        <button
-          onClick={onCtaClick}
-          className="btn-cta-gradient rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider text-[hsl(0,0%,100%)] border border-[hsl(0,0%,100%)]/20 transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
-          style={{ fontFamily: "'Hind', sans-serif" }}
-        >
-          Consultoría Gratis
-        </button>
-        <a
-          href="#clientes"
-          className="px-4 py-2 text-sm font-medium text-[hsl(0,0%,80%)] transition-colors hover:text-[hsl(0,0%,100%)]"
-          style={{ fontFamily: "'Hind', sans-serif" }}
-        >
-          Clientes
-        </a>
-        <a
-          href="#faq"
-          className="px-4 py-2 text-sm font-medium text-[hsl(0,0%,80%)] transition-colors hover:text-[hsl(0,0%,100%)]"
-          style={{ fontFamily: "'Hind', sans-serif" }}
-        >
-          FAQ
-        </a>
-      </div>
-    </nav>
+          ? "bg-[#16172b]/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(74,0,255,0.2)] border-white/10 py-2.5 px-4 sm:px-6"
+          : "bg-transparent border-transparent py-4 px-4 sm:px-6"
+      }`}>
+        <div className="flex items-center justify-between w-full gap-2 sm:gap-4">
+
+          {/* CTA a la izquierda - Siempre visible completo */}
+          <button
+            onClick={onCtaClick}
+            className="btn-pulse shrink-0 rounded-full px-4 sm:px-6 py-2 text-[10px] sm:text-sm font-bold uppercase tracking-wider text-white border border-white/20 transition-all duration-300"
+            style={{
+              fontFamily: "'Hind', sans-serif",
+              background: "linear-gradient(135deg, #4a00ff 0%, #7c3aff 50%, #a855f7 100%)",
+            }}
+          >
+            Consultoría Gratis
+          </button>
+
+          {/* Links centrados/derecha - Visibles siempre */}
+          <div className="flex items-center gap-3 sm:gap-6 lg:gap-8">
+            <a href="#clientes" className="nav-link text-[11px] sm:text-base font-semibold text-white/80 transition-colors hover:text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
+              Clientes
+            </a>
+            <a href="#metodo" className="nav-link text-[11px] sm:text-base font-semibold text-white/80 transition-colors hover:text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
+              Método
+            </a>
+            <a href="#faq" className="nav-link text-[11px] sm:text-base font-semibold text-white/80 transition-colors hover:text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
+              FAQ
+            </a>
+          </div>
+
+        </div>
+      </nav>
+    </>
   );
 };
 

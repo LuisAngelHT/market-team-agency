@@ -96,3 +96,53 @@
 .faq-active {
   background: linear-gradient(90deg, #7800ff, #3a00bf);
 }
+
+/* Animaciones Personalizadas del Navbar */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(74, 0, 255, 0.5), 0 0 20px rgba(74, 0, 255, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(74, 0, 255, 0.9), 0 0 40px rgba(74, 0, 255, 0.5);
+    transform: scale(1.04);
+  }
+}
+
+.btn-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+.btn-pulse:hover {
+  animation: none;
+  transform: scale(1.04);
+  box-shadow: 0 0 30px rgba(74, 0, 255, 0.8), 0 0 60px rgba(74, 0, 255, 0.4);
+}
+
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #4a00ff;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px rgba(74, 0, 255, 0.8);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.btn-pulse-solid {
+  animation: pulse-glow 2s ease-in-out infinite;
+  background: #4a00ff;
+}
+.btn-pulse-solid:hover {
+  animation: none;
+  transform: scale(1.04);
+  box-shadow: 0 0 30px rgba(74, 0, 255, 0.8), 0 0 60px rgba(74, 0, 255, 0.4);
+}

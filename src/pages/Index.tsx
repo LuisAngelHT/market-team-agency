@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Play, ImageIcon } from "lucide-react";
+import { Play, ImageIcon, X, Check  } from "lucide-react";
 import VslPlayer from "@/components/VslPlayer";
 import QualificationModal from "@/components/QualificationModal";
 import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/ScrollReveal";
 import FaqAccordion from "@/components/FaqAccordion";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const clientes = [
   {
@@ -54,32 +55,36 @@ const Index = () => {
         {/* Hero */}
         <section className="flex min-h-screen flex-col items-center justify-center px-4 pt-20 text-center">
           <ScrollReveal>
-            <div className="mx-auto max-w-3xl space-y-6">
-              <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+            <div className="mx-auto max-w-3xl space-y-4">
+              <h1 className="sm:mt-6 text-2xl sm:text-3xl md:text-4xl ">
                 No necesitas hacer más videitos...{" "}
-                <span className="text-foreground">
-                  Necesitas entender por qué no estás consiguiendo clientes.
+                <span>
+                  Necesitas entender por qué no estás consiguiendo clientes
                 </span>
               </h1>
-              <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg" style={{ fontFamily: "'Hind', sans-serif" }}>
-                Implementamos un sistema de adquisición que te lleva a{" "}
-                <br />
-                <span className="font-bold text-foreground">facturar entre 20K – 50K en 5 meses</span>
-                <br />
-                <span className="text-muted-foreground">(o trabajamos gratis hasta lograrlo)</span>
+              <p className="mx-auto max-w-2xl font-bold text-sm sm:text-lg text-muted-foreground leading-tight">
+                <span className="block">
+                  Implementamos un sistema de adquisición que te lleva a
+                </span>
+                <span className="block text-foreground text-base sm:text-xl">
+                  facturar entre 20K – 50K en 5 meses
+                </span>
+                <span className="block">
+                  (o trabajamos gratis hasta lograrlo)
+                </span>
               </p>
             </div>
           </ScrollReveal>
 
           {/* Video */}
-          <ScrollReveal delay={200} className="mt-12 w-full max-w-2xl">
+          <ScrollReveal delay={200} className="mt-5 w-full max-w-2xl">
             <VslPlayer />
           </ScrollReveal>
 
           {/* CTA below video */}
-          <ScrollReveal delay={400} className="mt-10 w-full flex flex-col items-center">
-            <div className="cta-section-gradient py-6 px-8 rounded-lg max-w-2xl w-full text-center">
-              <p className="text-sm text-foreground sm:text-base" style={{ fontFamily: "'Hind', sans-serif" }}>
+          <ScrollReveal delay={400} className="mt-5 w-full flex flex-col items-center">
+            <div className="cta-section-gradient py-2 px-8 rounded-xl max-w-xl w-full text-center shadow-lg">
+              <p className="text-sm sm:text-base text-foreground leading-relaxed">
                 Si eres <span className="font-bold">Abogado</span> o tienes un{" "}
                 <span className="font-bold">Estudio Jurídico</span> y quieres{" "}
                 <span className="font-bold">dejar de perder</span> clientes frente a tu competencia,
@@ -88,10 +93,13 @@ const Index = () => {
             </div>
             <button
               onClick={() => setModalOpen(true)}
-              className="btn-cta-gradient mt-8 rounded-lg px-8 py-4 text-sm font-bold uppercase tracking-wider text-[hsl(0,0%,100%)] border border-[hsl(0,0%,100%)]/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
-              style={{ fontFamily: "'Hind', sans-serif" }}
+              className="btn-pulse mt-8 rounded-full px-8 py-4 text-sm uppercase tracking-wider text-white border border-white/20 transition-all duration-300"
+              style={{ 
+                fontFamily: "'Hind', sans-serif",
+                background: "linear-gradient(135deg, #4a00ff 0%, #7c3aff 50%, #a855f7 100%)"
+              }}
             >
-              Consultoría <span className="font-extrabold">Gratis</span>
+              Consultoría <span className="hidden sm:inline font-extrabold">Gratis</span>
             </button>
           </ScrollReveal>
         </section>
@@ -125,86 +133,81 @@ const Index = () => {
         </section>
 
         {/* Método */}
-        <section className="px-4 py-24">
+        <section id="metodo" className="px-4 py-24">
           <div className="mx-auto max-w-4xl">
             <ScrollReveal>
               <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl tracking-wide">
-                Metodo
+                Método
               </h2>
             </ScrollReveal>
-            <div className="grid gap-6 md:grid-cols-2 items-start">
+
+            <div className="grid gap-6 md:gap-2 md:grid-cols-2 items-center">
+
+              {/* Tarjeta 1: Agencias Estiércol */}
               <ScrollReveal delay={0} direction="left">
-                <div className="space-y-2">
-                  <h3 className="text-xl font-extrabold text-center">Agencias Estiercol</h3>
-                  <div className="method-bad rounded-2xl p-6">
-                    <div className="mb-4 flex justify-center">
-                      <span className="text-3xl">💩</span>
+                <div className="flex flex-col gap-3 mx-auto w-full max-w-sm">
+                  <h3 className="text-2xl md:text-4xl text-center tracking-tight text-white">
+                    Agencias Estiércol
+                  </h3>
+                  <div className="rounded-[2rem] p-5 md:p-8 shadow-lg" style={{ backgroundColor: '#333547' }}>
+                    <div className="mb-4 md:mb-6 flex justify-center">
+                      <span className="text-3xl md:text-4xl drop-shadow-md">💩</span>
                     </div>
-                    <ul className="space-y-3 text-sm text-muted-foreground" style={{ fontFamily: "'Hind', sans-serif" }}>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
-                        Publican contenido sin generar ventas
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
-                        Se enfocan en likes y alcance
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
-                        Procesos desordenados y sin claridad (IMPROVISACIÓN)
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
-                        Dependes de ellos para todo
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
-                        Contratan a terceros y no obtener resultados
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground flex-shrink-0" />
-                        No garantizan resultados
-                      </li>
+                    <ul className="space-y-2 md:space-y-3 text-sm md:text-xl text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
+                      {[
+                        "Publican contenido sin generar ventas",
+                        "Se enfocan en likes y alcance",
+                        "Procesos desordenados y sin claridad (IMPROVISACIÓN)",
+                        "Dependes de ellos para todo",
+                        "Contratan a terceros y no obtienen resultados",
+                        "No garantizan resultados"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="mt-0.5 shrink-0 text-white/80 font-bold leading-snug">•</span>
+                          <span className="leading-snug text-left w-full text-white/80">{item}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
               </ScrollReveal>
+
+              {/* Tarjeta 2: Market Team Agency */}
               <ScrollReveal delay={200} direction="right">
-                <div className="space-y-2">
-                  <h3 className="text-xl font-extrabold text-center">Market Team Agency</h3>
-                  <div className="method-good rounded-2xl p-6">
-                    <div className="mb-4 flex justify-center">
-                      <span className="text-3xl">🚀</span>
+                <div className="flex flex-col gap-3 mx-auto w-full max-w-sm">
+                  <h3 className="text-2xl md:text-4xl text-center tracking-tight text-white">
+                    Market Team Agency
+                  </h3>
+                  <div
+                    className="rounded-[2rem] p-5 md:p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(74,0,255,0.4)]"
+                    style={{ backgroundColor: '#4a00ff' }}
+                  >
+                    <div className="mb-4 md:mb-6 flex justify-center">
+                      <img
+                        src="/icons/logo.png"
+                        alt="Logo Market Team Agency"
+                        className="w-14 md:w-20 h-auto drop-shadow-md"
+                      />
                     </div>
-                    <ul className="space-y-3 text-sm text-foreground" style={{ fontFamily: "'Hind', sans-serif" }}>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0" />
-                        Implementamos un sistema que genera <span className="font-bold">clientes constantes</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0" />
-                        Nos enfocamos en conversión y rentabilidad real
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0" />
-                        Trabajamos con metodologías <span className="font-bold">TRACK + PAE + Troyanos</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0" />
-                        Construimos un sistema que <span className="font-bold">No depende de ti</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0" />
-                        Equipo interno optimizado para un rendimiento real
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0" />
-                        Trabajamos gratis hasta lograr el resultado
-                      </li>
+                    <ul className="space-y-2 md:space-y-3 text-sm md:text-xl text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
+                      {[
+                        <>Implementamos un sistema que genera <span className="font-bold md:text-2xl">clientes constantes</span></>,
+                        "Nos enfocamos en conversión y rentabilidad real",
+                        <>Trabajamos con metodologías <span className="font-bold md:text-2xl">TRACK + PAE + Troyanos</span></>,
+                        <>Construimos un sistema que <span className="font-bold md:text-2xl">No depende de ti</span></>,
+                        "Equipo interno optimizado para un rendimiento real",
+                        "Trabajamos gratis hasta lograr el resultado"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="mt-0.5 shrink-0 text-white font-bold leading-snug">•</span>
+                          <span className="leading-snug text-left w-full">{item}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
               </ScrollReveal>
+
             </div>
           </div>
         </section>
@@ -270,6 +273,10 @@ const Index = () => {
       </div>
 
       <QualificationModal open={modalOpen} onOpenChange={setModalOpen} />
+      
+      {/* NUEVO: Botón de volver arriba */}
+      <ScrollToTop />
+      
     </div>
   );
 };
