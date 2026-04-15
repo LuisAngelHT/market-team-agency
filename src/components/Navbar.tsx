@@ -71,7 +71,7 @@ const Navbar = ({ onCtaClick }: NavbarProps) => {
               background: "linear-gradient(135deg, #4a00ff 0%, #7c3aff 50%, #a855f7 100%)",
             }}
           >
-            Consultoría Gratis
+            Consultoría Gratisssss
           </button>
 
           {/* Links centrados/derecha - Visibles siempre */}
